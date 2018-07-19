@@ -39,31 +39,21 @@ const Anchor = styled(OutgoingLink)`
 
 function Footer() {
     const siteDescription
-        = `Digital Psychology – a free library of psychological principles`
-        + ` and examples for inspiration to enhance the customer experience and`
-        + ` influence your user's behavior`;
+        = `grokkingStuff is the online alias of Vi Kumar.`
+        + ``
+        + ``;
 
     return (
         <Root>
             <Container>
                 <Info>
-                    {siteDescription}. Brought to you by{' '}
-                    <OutgoingLink to={`https://nolt.io?utm_source=partner&utm_medium=referral&utm_campaign=digitalpsychology`}>
-                        Nolt
-                    </OutgoingLink>.
+            {siteDescription}
                 </Info>
 
                 <ul>
                     <li>
-                        <Anchor to="http://bit.ly/digital-psychology-updates">
-                            {`Subscribe to updates`}
-                        </Anchor>
-                    </li>
-                    <li>
                         <Anchor
-                            to={`http://twitter.com/share?text=${encodeURIComponent(
-                                siteDescription
-                            )}&url=http://digitalpsychology.io`}>
+                            to={`http://twitter.com/share?text=Read grokkingStuff's posts>&url=http://grokkingStuff.org`}>
                             {`Share on Twitter`}
                         </Anchor>
                     </li>

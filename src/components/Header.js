@@ -44,6 +44,10 @@ function Header() {
                 <Anchor to="/">
                     {`grokkingStuff :: ViKumar`}
                 </Anchor>
+            <br />
+                  {'About'}
+                  {' * '}
+                  {'Blog'}
             </Title>
         </Root>
     );

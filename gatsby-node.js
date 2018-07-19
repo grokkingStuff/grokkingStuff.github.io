@@ -1,4 +1,4 @@
-const path = require('path');
+const path_ = require('path');
 
 exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
     const { createNodeField } = boundActionCreators;
@@ -6,7 +6,7 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
 
     if (node.internal.type === `MarkdownRemark`) {
         const fileNode = getNode(node.parent);
-        const parsedFilePath = path.parse(fileNode.relativePath);
+        const parsedFilePath = path_.parse(fileNode.relativePath);
 
         if (parsedFilePath.dir === ``) {
             slug = parsedFilePath.name;
@@ -23,7 +23,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     const { createPage } = boundActionCreators;
 
     return new Promise((resolve, reject) => {
-        const post = path.resolve('src/templates/Post.js');
+        const post = path_.resolve('src/templates/Post.js');
 
         // Query for all markdown "nodes" and for the slug
         // we previously created.
@@ -58,7 +58,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                         path: edge.node.fields.path,
                         component: post,
                         context: {
-                            path: edge.node.fields.path,
+                            path_: edge.node.fields.path,
                             slug: edge.node.fields.slug
                         }
                     });

@@ -16,7 +16,7 @@ const Root = styled.div`
 `;
 
 const Anchor = styled(Link)`
-    color: ${colors.border};
+    color: ${colors.text};
     display: inline-block;
     padding: 0.25rem 0.5rem;
 

@@ -31,8 +31,8 @@ function Raster(props) {
                     index={index}
                     key={index} />
             ))}
-        </Root>
-    );
+          </Root>
+          );
 }
 
 export default Raster;

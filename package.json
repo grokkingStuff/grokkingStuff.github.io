@@ -45,5 +45,8 @@
     "http-server": "^0.10.0"
   },
   "license": "MIT",
-  "main": "n/a"
+  "main": "n/a",
+  "engines": {
+    "yarn": "YARN NO LONGER USED - use npm instead."
+  }
 }

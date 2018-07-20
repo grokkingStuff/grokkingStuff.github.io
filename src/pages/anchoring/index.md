@@ -1,56 +1,136 @@
 ---
-title: Anchoring
+title: NACA Airfoil data generator
 draft: false
-datePublished: "2017-09-11T08:15:15Z"
-image: 9,10,11,12|9,10,11,12|9,10,11,12|9,10,11,12|10,11|10,11|10,11|7,8,9,10,11,12,13,14|10,11|10,11|10,11|10,11|10,11|10,11|2,10,11,19|2,3,4,5,9,10,11,12,16,17,18,19|3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18|5,6,7,8,9,10,11,12,13,14,15,16|7,8,9,10,11,12,13,14|9,10,11,12
+datePublished: "2018-07-19T08:15:15Z"
+image: 5,6,7,8,9,18|4,5,9,10,17,18|3,4,11,12,16,17|3,12,13,14,15,16|5,6,7,8,9,18|4,5,9,10,17,18|3,4,11,12,16,17|3,12,13,14,15,16|5,6,7,8,9,18|4,5,9,10,17,18|3,4,11,12,16,17|3,12,13,14,15,16| 
 seoImage: seo-image.png
 ---
 
-We tend to rely too heavily on one piece of information, usually the first one, when making a decision or estimating the value of uncertain objects. This initial "anchor" value is used as a mental reference point, which might influence the choice peoples will make.
+We're going to be generating our own NACA airfoil data from scratch! (Using Haskell!)
 
 
-## Studies
+# A brief intro to NACA airfoils
 
-Two groups of high school students were asked by [Tversky and Kahneman (1974)](http://science.sciencemag.org/content/185/4157/1124) to compute, within 5 seconds, the product of the numbers one through eight (1 x 2 x 3...) or the reverse (8 x 7 x 6...).  Because of the short time, they had to estimate the product after the first multiplications. These first results gave an anchor for their final answer. The median estimate of the first group was 512, while the median for the descending sequence was 2,250. The correct answer is: 40,320.
+Before the National Advisory Committee for Aeronautics (NACA) developed the NACA series, airfoil design was based on past experience with known shapes and experimentation with modifications to those shapes. 
+In short, as long as lifting surfaces produced adequete lift, it was good to go.
 
-Judges score better than others on some cognitive illusions like the framing effect (treating economically equivalent gains and losses differently) or representativeness heuristic (ignoring background statistical information in favor of individuating information) but are equally prone to the anchoring effect ([Guthrie, Rachlinski & Wistrich, 2001](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=257634)).
+This methodology began to change in the early 1930s with the publishing of a NACA report entitled "[The Characteristics of 78 Related Airfoil Sections from Tests in the Variable Density Wind Tunnel](https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19930091108.pdf). Not all 78 airfoils were used but the report did give aircraft manufacturers a wide selection to choose from. In fact, some aircrafts still use NACA airfoils, more than half a century later!
 
-Job seekers who anchor first and high in salary negotiations usually get a higher wage. Even a joking comment about an implausible salary could bring the final salary offer up ([Thorsteinson, 2011](http://onlinelibrary.wiley.com/doi/10.1111/j.1559-1816.2011.00779.x/abstract)).
-
-
-## Examples
-
-### Highest price first
-Anchor the price of the most expensive package of your product to the user's mind by listing it first. This order makes the subsequent plan seem like a bargain.
-
-![Anchoring example: Highest price first](01-highest-price-first.png)
+In this report, the authors noted that the two primary variables that determine whether an airfoil was successful or not were the slope of the airfoil mean camber line and the thickness distribution above and below this line. More about this in the explanation of the formula.
 
 
-### Lower price first
-Wait, didn't you just say the opposite? If there is not much of a price difference, try to anchor the lower price. Therefore, the slightly more expensive, but significantly more valuable offer, looks like a steal.
-
-![Anchoring example: Lower price first](02-lowest-price-first.png)
+# Formula Definitions
 
 
-### Listing higher-priced unrelated products
-A study showed that exposure to higher prices, even for unrelated products can impact people's willingness to pay for goods and services ([Nunes & Boatwright, 2004](https://msbfile03.usc.edu/digitalmeasures/jnunes/intellcont/Incidental%20Prices-1.pdf)).
-
-![Anchoring example: Listing higher-priced unrelated products](03-exposure-to-unrelated-products.png)
+## Camber Line
 
 
-### Exposing users to any high number
-Anchoring works with any number, regardless of whether that number is a price ([Adaval & Monroe, 2002](http://www.jstor.org/stable/10.1086/338212?seq=1#page_scan_tab_contents)).
+## Thickness Section
 
-![Anchoring example: Exposing users to any high number](04-any-high-number.png)
+    halfThickness t x = 5*t*(firstTerm - secondTerm - thirdTerm + fourthTerm - fifthTerm)
+                    where firstTerm = 0.2969*(sqrt x)
+                          secondTerm = 0.1260*(x)
+                          thirdTerm = 0.3516*(x*x)
+                          fourthTerm = 0.2843*(x*x*x)
+                          fifthTerm = 0.1015*(x*x*x*x)  
+                          -- trailing edge is open. Use 0.1036 otherwise
+
+-   Where did these arbitrary constants come from?
+    
+    So the NACA report we mentioned earlier found that the most successful airfoils were similar to the Gottingen airfoils & Clark Y Airfoils created earlier. These constants make the equation follow the curve of the original airfoils as much as possible.
 
 
-### Multiple-unit pricing
-The number of units in a promotion serves as an anchor, and indicates which quantity the customer should buy. In an experiment, this tactic increased sales by 32% ([Wansink, Kent & Hoch, 1998](http://foodpsychology.cornell.edu/sites/default/files/unmanaged_files/Anchoring-JMR-1998.pdf)).
+# Code to parse from the command line
 
-![Anchoring example: Multiple-unit pricing](05-multiple-unit-pricing.png)
+    upperYPointsGen xPoints t = map (halfThickness t) xPoints
+    lowerYPointsGen xPoints t = map (halfThickness t) xPoints 
 
 
-### Exposing users to a quantity limit
-A study by [Wansink, Kent and Hoch (1998)](http://foodpsychology.cornell.edu/sites/default/files/unmanaged_files/Anchoring-JMR-1998.pdf) evaluated if setting quantity limits affects shopping behavior. In the experiment, buyers purchased an average of 3.3 cans of soup when they had no limit, whereas shoppers with a limit of 12 bought an average of 7 cans.
+## rawData
 
-![Anchoring example: Exposing users to a quantity limit](06-quantity-limit.png)
+    coordinates = (zip lowerXPoints (map (*(-1)) lowerYPoints)) ++ (zip upperXPoints upperYPoints)
+    lowerYPoints = lowerYPointsGen lowerXPoints 0.5 
+    upperYPoints = upperYPointsGen upperXPoints 0.5
+    
+    lowerXPoints = [1.000000,  
+                    0.998557,  
+                    0.993984,  
+                    0.986392,  
+                    0.975825,  
+                    0.962343,  
+                    0.946027,  
+                    0.926971,  
+                    0.905287,  
+                    0.881104,  
+                    0.854565,  
+                    0.825830,  
+                    0.795069,  
+                    0.762469,  
+                    0.728228,  
+                    0.692554,  
+                    0.655665,  
+                    0.617788,  
+                    0.579155,  
+                    0.540008,  
+                    0.500588,  
+                    0.461143,  
+                    0.421921,  
+                    0.383032,  
+                    0.344680,  
+                    0.307289,  
+                    0.271106,  
+                    0.236371,  
+                    0.203313,  
+                    0.172151,  
+                    0.143088,  
+                    0.116313,  
+                    0.091996,  
+                    0.070289,  
+                    0.051324,  
+                    0.035214,  
+                    0.022051,  
+                    0.011907,  
+                    0.004833,  
+                    0.000860]    
+    
+    upperXPoints = [0.002223, 
+                    0.007479, 
+                    0.015723, 
+                    0.026892, 
+                    0.040906, 
+                    0.057669, 
+                    0.077071, 
+                    0.098987, 
+                    0.123281, 
+                    0.149805, 
+                    0.178401, 
+                    0.208902, 
+                    0.241131, 
+                    0.274904, 
+                    0.310028, 
+                    0.346303, 
+                    0.383522, 
+                    0.421644, 
+                    0.460397, 
+                    0.499412, 
+                    0.538451, 
+                    0.577279, 
+                    0.615658, 
+                    0.653352, 
+                    0.690129, 
+                    0.725762, 
+                    0.760029, 
+                    0.792716, 
+                    0.823619, 
+                    0.852541, 
+                    0.879302, 
+                    0.903730, 
+                    0.925669, 
+                    0.944979, 
+                    0.961536, 
+                    0.975232, 
+                    0.985978, 
+                    0.993705, 
+                    0.998361, 
+                    0.999916] 
+

@@ -1,13 +1,13 @@
 module.exports = {
     pathPrefix: `/`,
     siteMetadata: {
-        author: `Daniel Stefanovic`,
+        author: `Vishakh Kumar`,
         description: `A free library of psychological principles and examples`
             + ` to elevate your SaaS, e-commerce or other digital products.`,
         facebookAppId: `310591556081648`,
-        siteUrl: `http://digitalpsychology.io`,
-        title: `Digital Psychology`,
-        twitterHandle: `danistefanovic`
+        siteUrl: `https://grokkingStuff.github.io`,
+        title: `grokkingStuff :: viKumar`,
+        twitterHandle: `grokkingStuff`
     },
     plugins: [
         {

@@ -60,18 +60,21 @@ const Title = styled.span`
     text-overflow: ellipsis;
 `;
 
+
 function PatternList(props) {
+
     return (
         <Root>
-            {props.items.map((item, index) => (
-                <li key={index}>
+            {props.items.reverse().map((item, index) => (
+                    <li key={index}>
                     <Item to={item.path}>
+
                         <figure>
                             <Raster points={convertRaster(20, item.image)} size={20} />
                         </figure>
 
-                        <Index>{leftPad(index + 1, 3, '0')}</Index>
-                        <Title>{item.title}</Title>
+                        <Index>{leftPad(9 - index , 3, '0')}</Index>
+                        <Title> {item.title}</Title>
                     </Item>
                 </li>
             ))}

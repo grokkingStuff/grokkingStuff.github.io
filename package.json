@@ -2,7 +2,7 @@
   "name": "digitalpsychology",
   "description": "Digitalpsychology.io website",
   "version": "1.0.0",
-  "author": "Daniel Stefanovic <daniel.stefanovic@gmail.com>",
+  "author": "Vishakh Kumar <grokkingStuff@gmail.com>",
   "scripts": {
     "build": "yarn run clean && gatsby build",
     "clean": "rm -rf public/ && rm -rf .cache/ ",

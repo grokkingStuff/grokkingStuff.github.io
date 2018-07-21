@@ -11,7 +11,7 @@
     "prod": "http-server ./public",
     "start": "gatsby develop",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d static"
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public -b master"
   },
   "dependencies": {
     "gatsby": "^1.9.24",

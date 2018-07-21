@@ -1,20 +1,20 @@
 {
   "assetsByChunkName": {
     "component---src-pages-index-js": [
-      "component---src-pages-index-js-57bfee8cd13cccd41e24.js",
-      "component---src-pages-index-js-57bfee8cd13cccd41e24.js.map"
+      "component---src-pages-index-js-85d2bdf0cb82ccdf29ba.js",
+      "component---src-pages-index-js-85d2bdf0cb82ccdf29ba.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
       "path----557518bd178906f8d58a.js.map"
     ],
     "path---nacaairfoil": [
-      "path---nacaairfoil-b4a80ea6b9fb00e912bd.js",
-      "path---nacaairfoil-b4a80ea6b9fb00e912bd.js.map"
+      "path---nacaairfoil-10731296810dba23f861.js",
+      "path---nacaairfoil-10731296810dba23f861.js.map"
     ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-4e2381c40ec85c73c43b.js",
-      "component---src-layouts-index-js-4e2381c40ec85c73c43b.js.map"
+      "component---src-layouts-index-js-47b598106e00eaa22013.js",
+      "component---src-layouts-index-js-47b598106e00eaa22013.js.map"
     ],
     "path---index": [
       "path---index-fe0af97e961158c7e4b1.js",
@@ -22,19 +22,23 @@
     ],
     "commons": [
       "commons-4cd39fa88a59713b421c.js",
-      "commons-4cd39fa88a59713b421c.js.map"
+      "build-js-styles.css",
+      "commons-4cd39fa88a59713b421c.js.map",
+      "build-js-styles.css.map"
     ],
     "path---404-html": [
       "path---404-html-525c7205746609735fd9.js",
       "path---404-html-525c7205746609735fd9.js.map"
     ],
     "component---src-templates-post-js": [
-      "component---src-templates-post-js-1d334c59574a61bafaa1.js",
-      "component---src-templates-post-js-1d334c59574a61bafaa1.js.map"
+      "component---src-templates-post-js-89359e0a18df53ce7e0e.js",
+      "component---src-templates-post-js-89359e0a18df53ce7e0e.js.map"
     ],
     "app": [
       "app-d65b807457d2a54f3021.js",
-      "app-d65b807457d2a54f3021.js.map"
+      "build-js-styles.css",
+      "app-d65b807457d2a54f3021.js.map",
+      "build-js-styles.css.map"
     ],
     "path---404": [
       "path---404-525c7205746609735fd9.js",

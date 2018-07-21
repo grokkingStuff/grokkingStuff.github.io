@@ -5,7 +5,7 @@ module.exports = {
         description: `A free library of psychological principles and examples`
             + ` to elevate your SaaS, e-commerce or other digital products.`,
         facebookAppId: `310591556081648`,
-        siteUrl: `https://grokkingStuff.github.io`,
+        siteUrl: `https://grokkingStuff.github.io\grokkingStuff.github.io`,
         title: `grokkingStuff :: viKumar`,
         twitterHandle: `grokkingStuff`
     },
@@ -41,8 +41,8 @@ module.exports = {
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `Digital Psychology`,
-                short_name: `Digital Psychology`, // eslint-disable-line camelcase
+                name: `grokkingStuff`,
+                short_name: `grokkingStuff`, // eslint-disable-line camelcase
                 start_url: `/?utm_source=homescreen`, // eslint-disable-line camelcase
                 background_color: `#ffffff`, // eslint-disable-line camelcase
                 theme_color: `#ffffff`, // eslint-disable-line camelcase
